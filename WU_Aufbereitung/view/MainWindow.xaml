@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Datei auswählen" HorizontalAlignment="Center" Margin="0,357,0,0" VerticalAlignment="Top" Width="256" Height="53"/>
+        <Button x:Name="btnDateiAuswaehlen" Content="Datei auswählen" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Width="256" Height="53" FontWeight="Bold" FontSize="16" Click="btnDateiAuswaehlenClick"/>
+        <Button x:Name="btnEinstellungen" Content="Button" HorizontalAlignment="Left" Margin="742,376,0,0" VerticalAlignment="Top" Height="48" Width="48" Click="btnEinstellungClick"/>
 
     </Grid>
 </Window>
