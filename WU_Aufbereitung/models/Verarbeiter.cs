@@ -17,6 +17,7 @@ namespace WU_Aufbereitung.models
 
         public void erstelleExport(String pfadExport)
         {
+            string importPfad = "";
 
         }
 
@@ -25,32 +26,21 @@ namespace WU_Aufbereitung.models
             //Summe der Fehlstunden
             int[,] summeFehlstunden = new int[schuelerListe.Length,4];
 
-            //Variablen für unterschiedliche Fehlzeiten?
-            int entschuldigt = 0;
-            int unentschuldigt = 0;
-            int verspätet = 0;
-            int zeilenZaehler = 0;
-
-            for (int i = 0; i <= summeFehlstunden.Length; i++)
+            for (int i = 0; i <= schuelerListe.Length; i++)
             {
-                entschuldigt = 0;
-                verspätet = 0;
-                unentschuldigt = 0;
-
                 for (int j = 0; j <= schuelerListe[i].Fehlzeit.Length; j++)
                 {
                     if(schuelerListe[i].Fehlzeit[j].Status.Equals("offen"))
-                        unentschuldigt += schuelerListe[i].Fehlzeit[j].Stunden;
+                        //unendschuldigt
+                        summeFehlstunden[i,1] += schuelerListe[i].Fehlzeit[j].Stunden;
                     else if(schuelerListe[i].Fehlzeit[j].Status.Equals("verspätet"))
-                        verspätet += schuelerListe[i].Fehlzeit[j].Stunden;
+                        //Verspätet
+                        summeFehlstunden[i,2] += schuelerListe[i].Fehlzeit[j].Stunden;
                     else
-                        entschuldigt += schuelerListe[i].Fehlzeit[j].Stunden;
-                }
-                summeFehlstunden[i,zeilenZaehler] = help;
+                        //Entschuldigt
+                        summeFehlstunden[i,3] += schuelerListe[i].Fehlzeit[j].Stunden;
+                }             
             }
-
-
-
         }
 
         public Klasse importReport(String pfadImport)
