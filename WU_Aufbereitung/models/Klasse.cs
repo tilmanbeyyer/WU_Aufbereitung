@@ -32,6 +32,10 @@ namespace WU_Aufbereitung.models
 
             return liste;
         }
+
+        public static string[] GetSampleDatum() { 
+            return new string[]{"01.11", "02.11", "03.11", "04.11", "05.11" };
+        }
         #endregion
     }
 }

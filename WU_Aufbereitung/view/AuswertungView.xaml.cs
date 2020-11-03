@@ -22,15 +22,16 @@ namespace WU_Aufbereitung.view
         public Auswertung()
         {
             InitializeComponent();
-            Klasse klasse = new Klasse(Klasse.getSampleSchuelerListe(), "FS183");
+            Klasse klasse = new Klasse(Klasse.getSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());
             this.schuelerListeGrid.ItemsSource = schuelerListe;
-            this.montagLabel.Content = "Montag";
-        }
+            this.montagLabel.Content = "Mo " + klasse.Woche[0];
+            this.diensttagLabel.Content = "Di " + klasse.Woche[0];
+            this.mittwochLabel.Content = "Mi " + klasse.Woche[0];
+            this.donnerstagLabel.Content = "Do " + klasse.Woche[0];
+            this.freitagLabel.Content = "Fr " + klasse.Woche[0];
 
-        public string[] GetWeeks() {
-            Schueler s = schuelerListe[0];
-            
-            return null;
+            this.moh.Binding
+
         }
 
     }
