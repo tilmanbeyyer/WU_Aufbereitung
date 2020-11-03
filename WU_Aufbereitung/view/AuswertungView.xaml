@@ -6,8 +6,14 @@
         xmlns:local="clr-namespace:WU_Aufbereitung.view"
         mc:Ignorable="d"
         Title="Auswertung" Height="450" Width="800">
-    <Grid>
-        
+    <Grid><!--
+        <DataGrid Name="schuelerListe" SelectionChanged="fehlzeitenDataFrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nachname"></DataGridTextColumn>
+                <DataGridTextColumn Header="Vorname"></DataGridTextColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>-->
     </Grid>
     
 </Window>
