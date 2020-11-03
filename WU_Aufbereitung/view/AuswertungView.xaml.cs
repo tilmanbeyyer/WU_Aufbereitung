@@ -24,6 +24,13 @@ namespace WU_Aufbereitung.view
             InitializeComponent();
             Klasse klasse = new Klasse(Klasse.getSampleSchuelerListe(), "FS183");
             this.schuelerListeGrid.ItemsSource = schuelerListe;
+            this.montagLabel.Content = "Montag";
+        }
+
+        public string[] GetWeeks() {
+            Schueler s = schuelerListe[0];
+            
+            return null;
         }
 
     }

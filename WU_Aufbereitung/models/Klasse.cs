@@ -8,15 +8,18 @@ namespace WU_Aufbereitung.models
     {
         private List<Schueler> schuelerListe = new List<Schueler>();
         private string bezeichner;
+        private string[] woche;
 
-        public Klasse(List<Schueler> schuelerListe, string bezeichner)
+        public Klasse(List<Schueler> schuelerListe, string bezeichner, string[] woche)
         {
             this.schuelerListe = schuelerListe;
             this.bezeichner = bezeichner;
+            this.woche = woche;
         }
 
         #region Getter/Setter
         public string Bezeichner { get => bezeichner; set => bezeichner = value; }
+        public string[] Woche { get => woche; set => woche = value; }
         internal List<Schueler> SchuelerListe { get => schuelerListe; set => schuelerListe = value; }
 
         public static List<Schueler> getSampleSchuelerListe() {
