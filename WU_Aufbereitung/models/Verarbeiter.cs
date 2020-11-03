@@ -16,12 +16,13 @@ namespace WU_Aufbereitung.models
 
         public Verarbeiter()
         {
-            
+
         }
 
-        public void erstelleExport(String pfadExport, String nameLehrer)
+        // public void erstelleExport(String importPfad,String pfadExport, String nameLehrer)
+        public void erstelleExport(String importPfad)
         {
-            string importPfad = "";
+
             Excel.Application excel = new Excel.ApplicationClass();
             excel.Visible = true;
 
@@ -67,22 +68,22 @@ namespace WU_Aufbereitung.models
         public void erstelleAuswertung()
         {
             //Summe der Fehlstunden
-            int[,] summeFehlstunden = new int[schuelerListe.Length,4];
+            int[,] summeFehlstunden = new int[schuelerListe.Length, 4];
 
             for (int i = 0; i <= schuelerListe.Length; i++)
             {
                 for (int j = 0; j <= schuelerListe[i].Fehlzeit.Length; j++)
                 {
-                    if(schuelerListe[i].Fehlzeit[j].Status.Equals("offen"))
+                    if (schuelerListe[i].Fehlzeit[j].Status.Equals("offen"))
                         //unendschuldigt
-                        summeFehlstunden[i,1] += schuelerListe[i].Fehlzeit[j].Stunden;
-                    else if(schuelerListe[i].Fehlzeit[j].Status.Equals("verspätet"))
+                        summeFehlstunden[i, 1] += schuelerListe[i].Fehlzeit[j].Stunden;
+                    else if (schuelerListe[i].Fehlzeit[j].Status.Equals("verspätet"))
                         //Verspätet
-                        summeFehlstunden[i,2] += schuelerListe[i].Fehlzeit[j].Stunden;
+                        summeFehlstunden[i, 2] += schuelerListe[i].Fehlzeit[j].Stunden;
                     else
                         //Entschuldigt
-                        summeFehlstunden[i,3] += schuelerListe[i].Fehlzeit[j].Stunden;
-                }             
+                        summeFehlstunden[i, 3] += schuelerListe[i].Fehlzeit[j].Stunden;
+                }
             }
             this.fehlzeitenSummenListe = summeFehlstunden;
         }
@@ -92,7 +93,7 @@ namespace WU_Aufbereitung.models
             //CSV-Pfad
             var reader = new StreamReader(File.OpenRead(pfadImport));
             List<string> listA = new List<string>();
-            List<string> listB = new List<string>();
+
             int[] zeiten = new int[5];
             int hilfe = 0;
             String[] tage = new String[5];
@@ -103,35 +104,51 @@ namespace WU_Aufbereitung.models
             {
                 var line = reader.ReadLine();
                 var values = line.Split(';');
-                listA.Add(values[0]);
-                listB.Add(values[1]);
+                for (int i = 0; i < values.Length; i++)
+                {
+                    if (values[i] != "")
+                    {
+                        listA.Add(values[i]);
+                    }
+                }
 
                 if (hilfe == 0)
                 {
-                  tage = listA.ToArray();
+                    tage = listA.ToArray();
+                    listA.Clear();
                 }
-                if (hilfe > 1 && !listA.Contains("Legende"))
+                else if (hilfe == 1)
                 {
-                    
+                    hilfe++;
+                    listA.Clear();
+                    continue;
+                }
+                else if (hilfe >= 2 && !(listA.Count == 0))
+                {
+
                     //Zeile mit Inhalt 
                     zeile = listA.ToArray();
 
                     //Fehlzeiten 
-                    Fehlzeit[] fehlzeiteSchueler = new Fehlzeit[5];
-                    for (int i = 0; i <= fehlzeiteSchueler.Length; i++)
+                    Fehlzeit[] fehlzeiteSchueler = new Fehlzeit[zeile.Length];
+                    for (int i = 0; i < zeile.Length - 3; i++)
                     {
-                        fehlzeiteSchueler[i] = new Fehlzeit(tage[i], Int32.Parse(zeile[i + 3]), zeile[i + 4]);
+                        if (!Regex.IsMatch(zeile[i + 3], @"^\d+$"))
+                        {
+                            fehlzeiteSchueler[i] = new Fehlzeit(tage[i], Int32.Parse(zeile[i + 2]), zeile[i + 3]);
+                        }
                     }
                     //Schüler init
                     Schueler a = new Schueler(zeile[0], zeile[1], fehlzeiteSchueler);
                     schueler.Add(a);
                     hilfe++;
-
+                    listA.Clear();
                 }
                 else
                 {
                     break;
                 }
+                hilfe++;
             }
             SchuelerListe = schueler.ToArray();
             return new Klasse(schueler, "leer");
