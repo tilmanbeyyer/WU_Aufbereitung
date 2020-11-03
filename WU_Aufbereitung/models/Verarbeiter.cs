@@ -23,7 +23,7 @@ namespace WU_Aufbereitung.models
         public void erstelleAuswertung()
         {
             //Summe der Fehlstunden
-            int[][] summeFehlstunden = new int[schuelerListe.Length][4];
+            int[,] summeFehlstunden = new int[schuelerListe.Length,4];
 
             //Variablen für unterschiedliche Fehlzeiten?
             int entschuldigt = 0;
@@ -46,7 +46,7 @@ namespace WU_Aufbereitung.models
                     else
                         entschuldigt += schuelerListe[i].Fehlzeit[j].Stunden;
                 }
-                summeFehlstunden[i][zeilenZaehler] = help;
+                summeFehlstunden[i,zeilenZaehler] = help;
             }
 
 
