@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace WU_Aufbereitung.models
@@ -9,9 +10,9 @@ namespace WU_Aufbereitung.models
     {
         private Schueler[] schuelerListe;
 
-        public Verarbeiter(Schueler[] schuelerListe)
+        public Verarbeiter()
         {
-            this.schuelerListe = schuelerListe;
+            
         }
 
         public void erstelleExport(String pfadExport)
@@ -21,36 +22,85 @@ namespace WU_Aufbereitung.models
 
         public void erstelleAuswertung()
         {
+            //Summe der Fehlstunden
+            int[][] summeFehlstunden = new int[schuelerListe.Length][4];
+
+            //Variablen für unterschiedliche Fehlzeiten?
+            int entschuldigt = 0;
+            int unentschuldigt = 0;
+            int verspätet = 0;
+            int zeilenZaehler = 0;
+
+            for (int i = 0; i <= summeFehlstunden.Length; i++)
+            {
+                entschuldigt = 0;
+                verspätet = 0;
+                unentschuldigt = 0;
+
+                for (int j = 0; j <= schuelerListe[i].Fehlzeit.Length; j++)
+                {
+                    if(schuelerListe[i].Fehlzeit[j].Status.Equals("offen"))
+                        unentschuldigt += schuelerListe[i].Fehlzeit[j].Stunden;
+                    else if(schuelerListe[i].Fehlzeit[j].Status.Equals("verspätet"))
+                        verspätet += schuelerListe[i].Fehlzeit[j].Stunden;
+                    else
+                        entschuldigt += schuelerListe[i].Fehlzeit[j].Stunden;
+                }
+                summeFehlstunden[i][zeilenZaehler] = help;
+            }
+
+
 
         }
 
-        public void importReport(String pfadImport)
+        public Klasse importReport(String pfadImport)
         {
             //CSV-Pfad
             var reader = new StreamReader(File.OpenRead(pfadImport));
             List<string> listA = new List<string>();
             List<string> listB = new List<string>();
             int[] zeiten = new int[5];
+            int hilfe = 0;
+            String[] tage = new String[5];
+            String[] zeile;
+            List<Schueler> schueler = new List<Schueler>();
 
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
                 var values = line.Split(';');
-
                 listA.Add(values[0]);
                 listB.Add(values[1]);
 
-                //
-                foreach (var coloumn1 in listA)
+                if (hilfe == 0)
                 {
-                    Console.WriteLine(coloumn1);
+                  tage = listA.ToArray();
                 }
-
-                foreach (var coloumn2 in listA)
+                if (hilfe > 1 && !listA.Contains("Legende"))
                 {
-                    Console.WriteLine(coloumn2);
+                    
+                    //Zeile mit Inhalt 
+                    zeile = listA.ToArray();
+
+                    //Fehlzeiten 
+                    Fehlzeit[] fehlzeiteSchueler = new Fehlzeit[5];
+                    for (int i = 0; i <= fehlzeiteSchueler.Length; i++)
+                    {
+                        fehlzeiteSchueler[i] = new Fehlzeit(tage[i], Int32.Parse(zeile[i + 3]), zeile[i + 4]);
+                    }
+                    //Schüler init
+                    Schueler a = new Schueler(zeile[0], zeile[1], fehlzeiteSchueler);
+                    schueler.Add(a);
+                    hilfe++;
+
+                }
+                else
+                {
+                    break;
                 }
             }
+            SchuelerListe = schueler.ToArray();
+            return new Klasse(schueler, "leer");
         }
 
         public void pruefeReport()
