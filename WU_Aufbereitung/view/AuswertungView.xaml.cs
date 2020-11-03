@@ -18,11 +18,12 @@ namespace WU_Aufbereitung.view
     /// </summary>
     public partial class Auswertung : Window
     {
+        List<Schueler> schuelerListe = Klasse.getSampleSchuelerListe();
         public Auswertung()
         {
             InitializeComponent();
             Klasse klasse = new Klasse(Klasse.getSampleSchuelerListe(), "FS183");
-            List<Schueler> schuelerListe = klasse.SchuelerListe;
+            this.schuelerListeGrid.ItemsSource = schuelerListe;
         }
 
     }
