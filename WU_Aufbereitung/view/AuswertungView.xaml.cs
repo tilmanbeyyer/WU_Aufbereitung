@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WU_Aufbereitung.models;
 
 namespace WU_Aufbereitung.view
 {
@@ -17,9 +18,12 @@ namespace WU_Aufbereitung.view
     /// </summary>
     public partial class Auswertung : Window
     {
+        List<Schueler> schuelerListe = Klasse.getSampleSchuelerListe();
         public Auswertung()
         {
             InitializeComponent();
+            Klasse klasse = new Klasse(Klasse.getSampleSchuelerListe(), "FS183");
+            this.schuelerListeGrid.ItemsSource = schuelerListe;
         }
 
     }

@@ -7,7 +7,21 @@
         mc:Ignorable="d"
         Title="Auswertung" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid Name="schuelerListeGrid" ItemsSource="{Binding Source = schuelerListe}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Mon">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="tEST"></TextBlock>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
     
 </Window>
