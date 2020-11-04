@@ -14,7 +14,7 @@ namespace WU_Aufbereitung.models
         {
             this.nachname = nachname;
             this.vorname = vorname;
-            this.fehlzeit = new Fehlzeit[5];
+            this.fehlzeit = fehlzeit;
         }
 
         #region Getter/Setter

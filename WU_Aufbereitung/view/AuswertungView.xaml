@@ -5,30 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WU_Aufbereitung.view"
         mc:Ignorable="d"
-        Title="Auswertung" Height="450" Width="800">
+        Title="Auswertung" Height="450" Width="1000">
     <Grid>
-        <DataGrid Name="schuelerListeGrid" ItemsSource="{Binding Source = viewSchuelerListe}" AutoGenerateColumns="False" Margin="0,66,0,0">
+
+
+        <DataGrid Name="schuelerListeGrid"  AutoGenerateColumns="False" Margin="0,66,0,0" Grid.ColumnSpan="2" Drop="dropElementOnGrid">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" ></DataGridTextColumn>
-                <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}"></DataGridTextColumn>
-                <DataGridTextColumn Header="h" Binding="{Binding HMo}"></DataGridTextColumn>
-                <DataGridTextColumn Header="e" Binding="{Binding SMo}"></DataGridTextColumn>
-                <DataGridTextColumn Header="h"></DataGridTextColumn>
-                <DataGridTextColumn Header="e"></DataGridTextColumn>
-                <DataGridTextColumn Header="h"></DataGridTextColumn>
-                <DataGridTextColumn Header="e"></DataGridTextColumn>
-                <DataGridTextColumn Header="h"></DataGridTextColumn>
-                <DataGridTextColumn Header="e"></DataGridTextColumn>
-                <DataGridTextColumn Header="h"></DataGridTextColumn>
-                <DataGridTextColumn Header="e"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" Width="6*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}" Width="6*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HMo}" x:Name="hMo" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SMo}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HDi}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SDi}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HMi}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SMi}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HDo}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SDo}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HFr}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SFr}" Width="1*"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="verspätet" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="entsch" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="unentsch" Width="2*"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Label Name="montagLabel" Content="Mo" HorizontalAlignment="Left" Height="25" Margin="132,41,0,0" VerticalAlignment="Top" Width="40"/>
-        <Label x:Name="diensttagLabel" Content="Di" HorizontalAlignment="Left" Height="25" Margin="172,41,0,0" VerticalAlignment="Top" Width="40"/>
-        <Label x:Name="mittwochLabel" Content="Mi" HorizontalAlignment="Left" Height="25" Margin="212,41,0,0" VerticalAlignment="Top" Width="40"/>
-        <Label x:Name="donnerstagLabel" Content="Do" HorizontalAlignment="Left" Height="25" Margin="252,41,0,0" VerticalAlignment="Top" Width="40"/>
-        <Label x:Name="freitagLabel" Content="Fr" HorizontalAlignment="Left" Height="25" Margin="292,41,0,0" VerticalAlignment="Top" Width="40"/>
+
+        <Label Name="montagLabel" Content="Mo" HorizontalAlignment="Left" Height="25" Margin="380,41,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="diensttagLabel" Content="Di" HorizontalAlignment="Left" Height="25" Margin="446,41,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="mittwochLabel" Content="Mi" HorizontalAlignment="Left" Height="25" Margin="510,41,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="donnerstagLabel" Content="Do" HorizontalAlignment="Left" Height="25" Margin="573,41,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="freitagLabel" Content="Fr" HorizontalAlignment="Left" Height="25" Margin="636,41,0,0" VerticalAlignment="Top" Width="40"/>
 
 
 

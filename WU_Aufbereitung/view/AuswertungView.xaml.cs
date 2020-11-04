@@ -18,25 +18,19 @@ namespace WU_Aufbereitung.view
     /// </summary>
     public partial class Auswertung : Window
     {
-        List<ViewSchueler> viewSchuelerListe;
         Klasse klasse;
         public Auswertung()
         {
-            
-
-            klasse = new Klasse(Klasse.GetSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());
             InitializeComponent();
+            klasse = new Klasse(Klasse.GetSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());        
             this.schuelerListeGrid.ItemsSource = klasse.GetListViewSchueler();
-            this.montagLabel.Content = "Mo " + klasse.Woche[0];
-            this.diensttagLabel.Content = "Di " + klasse.Woche[0];
-            this.mittwochLabel.Content = "Mi " + klasse.Woche[0];
-            this.donnerstagLabel.Content = "Do " + klasse.Woche[0];
-            this.freitagLabel.Content = "Fr " + klasse.Woche[0];
-            
-
-
-            
+            this.schuelerListeGrid.AllowDrop = true;
         }
 
+        private void dropElementOnGrid(object sender, DragEventArgs e)
+        {
+            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            Console.WriteLine(e.Data);
+        }
     }
 }
