@@ -5,15 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WU_Aufbereitung.view"
         mc:Ignorable="d"
-        Title="Auswertung" Height="450" Width="800">
-    <Grid><!--
-        <DataGrid Name="schuelerListe" SelectionChanged="fehlzeitenDataFrid_SelectionChanged">
+        Title="Auswertung" Height="450" Width="1000">
+    <Grid Margin="2,0,-2,0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Row="1" Grid.Column="1" Name="schuelerListeGrid"  AutoGenerateColumns="False" Drop="dropElementOnGrid">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nachname"></DataGridTextColumn>
-                <DataGridTextColumn Header="Vorname"></DataGridTextColumn>
-                
+                <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" Width="6*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}" Width="6*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HMo}" x:Name="hMo" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SMo}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HDi}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SDi}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HMi}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SMi}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HDo}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SDo}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HFr}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SFr}" Width="1*"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="verspätet" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="entsch" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="unentsch" Width="2*"></DataGridTextColumn>
+
             </DataGrid.Columns>
-        </DataGrid>-->
+        </DataGrid>
+
+        <Button Grid.Row="3" Grid.Column="1" Content="Exportieren" HorizontalAlignment="Right"/>
+
+
+
     </Grid>
-    
+
 </Window>

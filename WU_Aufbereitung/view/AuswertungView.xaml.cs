@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WU_Aufbereitung.models;
 
 namespace WU_Aufbereitung.view
 {
@@ -17,10 +18,28 @@ namespace WU_Aufbereitung.view
     /// </summary>
     public partial class Auswertung : Window
     {
+        Klasse klasse;
+        List<string> pfadeNachweise = new List<string>();
         public Auswertung()
         {
             InitializeComponent();
+            klasse = new Klasse(Klasse.GetSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());        
+            this.schuelerListeGrid.ItemsSource = klasse.GetListViewSchueler();
+            this.schuelerListeGrid.AllowDrop = true;
         }
 
+        private void dropElementOnGrid(object sender, DragEventArgs e)
+        {
+            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string file in fileList)
+            {
+                pfadeNachweise.Add(file);
+            }
+
+            Point test = e.GetPosition(this.schuelerListeGrid);
+
+            
+            Console.WriteLine(e.Data);
+        }
     }
 }

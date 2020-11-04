@@ -7,8 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnDateiAuswaehlen" Content="Datei auswählen" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Width="256" Height="53" FontWeight="Bold" FontSize="16" Click="btnDateiAuswaehlenClick"/>
-        <Button x:Name="btnEinstellungen" Content="Button" HorizontalAlignment="Left" Margin="742,376,0,0" VerticalAlignment="Top" Height="48" Width="48" Click="btnEinstellungClick"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height=".1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnDateiAuswaehlen" Content="Datei auswählen" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="256" Height="53" FontWeight="Bold" FontSize="16" Click="btnDateiAuswaehlenClick"/>
+        <Button x:Name="btnEinstellungen" Content="Einstellungen" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Center" Height="43" Width="80" Click="btnEinstellungClick"/>
 
     </Grid>
 </Window>

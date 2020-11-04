@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using WU_Aufbereitung.view;
+
 namespace WU_Aufbereitung
 {
     /// <summary>
@@ -37,10 +39,17 @@ namespace WU_Aufbereitung
                 filename = openFileDialog.FileName;
             }
             Console.WriteLine(filename);
+
+            Auswertung av = new Auswertung();
+            this.Content = av.Content;
         }
 
         private void btnEinstellungClick(object sender, RoutedEventArgs e)
         {
+            //TODO Load File verarbeiter and Check whether file loaded successfully
+            EinstellungenView eV = new EinstellungenView();
+            eV.Show();
+            
 
         }
     }
