@@ -30,7 +30,7 @@ namespace WU_Aufbereitung.view
             this.donnerstagLabel.Content = "Do " + klasse.Woche[0];
             this.freitagLabel.Content = "Fr " + klasse.Woche[0];
 
-            this.moh.Binding
+            
 
         }
 
