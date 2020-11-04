@@ -170,7 +170,7 @@ namespace WU_Aufbereitung.models
                 zeileCSV++;
             }
             SchuelerListe = schueler.ToArray();
-            return new Klasse(schueler, "leer");
+            return new Klasse(schueler, "", tage);
         }
 
         public bool pruefeReport(string pfadImport)
