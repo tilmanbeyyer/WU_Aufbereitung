@@ -15,7 +15,12 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" Name="schuelerListeGrid"  AutoGenerateColumns="False" Drop="dropElementOnGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Row="1" Grid.Column="1" Name="schuelerListeGrid"  AutoGenerateColumns="False" Drop="dropElementOnGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" Width="6*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}" Width="6*"></DataGridTextColumn>
@@ -37,7 +42,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Grid.Row="3" Content="Exportieren" HorizontalAlignment="Right"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Exportieren" HorizontalAlignment="Right"/>
 
 
 
