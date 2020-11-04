@@ -19,6 +19,7 @@ namespace WU_Aufbereitung.view
     public partial class Auswertung : Window
     {
         Klasse klasse;
+        List<string> pfadeNachweise = new List<string>();
         public Auswertung()
         {
             InitializeComponent();
@@ -30,6 +31,14 @@ namespace WU_Aufbereitung.view
         private void dropElementOnGrid(object sender, DragEventArgs e)
         {
             string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string file in fileList)
+            {
+                pfadeNachweise.Add(file);
+            }
+
+            Point test = e.GetPosition(this.schuelerListeGrid);
+
+            
             Console.WriteLine(e.Data);
         }
     }
