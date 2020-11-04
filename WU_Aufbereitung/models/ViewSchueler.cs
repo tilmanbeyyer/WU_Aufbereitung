@@ -8,8 +8,8 @@ namespace WU_Aufbereitung.models
     {
         string vorname = "";
         string nachname ="";
-        int hMo = 0;
-        string sMo = "";
+        int hMo = 8;
+        string sMo = "test";
         int hDi = 0;
         string sDi = "";
         int hMi = 0;
@@ -19,26 +19,52 @@ namespace WU_Aufbereitung.models
         int hFr = 0;
         string sFr = "";
 
-        public ViewSchueler(Schueler s, int hMo, string sMo, int hDi, string sDi, int hMi, string sMi, int hDo, string sDo, int hFr, string sFr)
+        public ViewSchueler(Schueler s)
         {
             this.vorname = s.Vorname;
             this.nachname = s.Nachname;
-            this.hMo = hMo;
-            this.sMo = sMo;
-            this.hDi = hDi;
-            this.sDi = sDi;
-            this.hMi = hMi;
-            this.sMi = sMi;
-            this.hDo = hDo;
-            this.sDo = sDo;
-            this.hFr = hFr;
-            this.sFr = sFr;
+            if (s.Fehlzeit[0] != null)
+            {
+                this.hMo = s.Fehlzeit[0].Stunden;
+                this.sMo = s.Fehlzeit[0].Status;
+            }
+
+            if (s.Fehlzeit[1] != null)
+            {
+                this.hDi = s.Fehlzeit[1].Stunden;
+                this.sDi = s.Fehlzeit[1].Status;
+            }
+
+            if (s.Fehlzeit[2] != null)
+            {
+                this.hMi = s.Fehlzeit[2].Stunden;
+                this.sMi = s.Fehlzeit[2].Status;
+            }
+
+            if (s.Fehlzeit[3] != null)
+            {
+                this.hDo = s.Fehlzeit[3].Stunden;
+                this.sDo = s.Fehlzeit[3].Status;
+            }
+
+            if (s.Fehlzeit[4] != null)
+            {
+                this.hFr = s.Fehlzeit[4].Stunden;
+                this.sFr = s.Fehlzeit[4].Status;
+            }
         }
 
-        ViewSchueler(Schueler s) {
-            this.vorname = s.Vorname;
-            this.nachname = s.Nachname;
-        }
-
+        public string Vorname { get => vorname; set => vorname = value; }
+        public string Nachname { get => nachname; set => nachname = value; }
+        public int HMo { get => hMo; set => hMo = value; }
+        public string SMo { get => sMo; set => sMo = value; }
+        public int HDi { get => hDi; set => hDi = value; }
+        public string SDi { get => sDi; set => sDi = value; }
+        public int HMi { get => hMi; set => hMi = value; }
+        public string SMi { get => sMi; set => sMi = value; }
+        public int HDo { get => hDo; set => hDo = value; }
+        public string SDo { get => sDo; set => sDo = value; }
+        public int HFr { get => hFr; set => hFr = value; }
+        public string SFr { get => sFr; set => sFr = value; }
     }
 }

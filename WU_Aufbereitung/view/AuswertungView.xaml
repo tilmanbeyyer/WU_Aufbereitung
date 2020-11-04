@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="Auswertung" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="schuelerListeGrid" ItemsSource="{Binding Source = schuelerListe}" AutoGenerateColumns="False" Margin="0,66,0,0">
+        <DataGrid Name="schuelerListeGrid" ItemsSource="{Binding Source = viewSchuelerListe}" AutoGenerateColumns="False" Margin="0,66,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" ></DataGridTextColumn>
                 <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}"></DataGridTextColumn>
-                <DataGridTextColumn Header="h" x:Name="moh"></DataGridTextColumn>
-                <DataGridTextColumn Header="e"></DataGridTextColumn>
+                <DataGridTextColumn Header="h" Binding="{Binding HMo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="e" Binding="{Binding SMo}"></DataGridTextColumn>
                 <DataGridTextColumn Header="h"></DataGridTextColumn>
                 <DataGridTextColumn Header="e"></DataGridTextColumn>
                 <DataGridTextColumn Header="h"></DataGridTextColumn>

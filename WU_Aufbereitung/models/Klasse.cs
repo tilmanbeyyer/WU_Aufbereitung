@@ -27,14 +27,12 @@ namespace WU_Aufbereitung.models
             List<ViewSchueler> list = new List<ViewSchueler>();
             foreach (Schueler s in schuelerListe)
             {
-                list.Add(new ViewSchueler(s, ));
+                list.Add(new ViewSchueler(s));
             }
-            return null;
-        }
+            return list;
+        } 
 
-        private 
-
-        public static List<Schueler> getSampleSchuelerListe() {
+        public static List<Schueler> GetSampleSchuelerListe() {
             List<Schueler> liste = new List<Schueler>();
             liste.Add(new Schueler("Hubach", "Jean-Pierre", new Fehlzeit[] { new Fehlzeit("02.11", 8, "entschuldigt") }));
             liste.Add(new Schueler("Beyer", "Tilman", new Fehlzeit[] { new Fehlzeit("03.11", 4, "entschuldigt") }));
