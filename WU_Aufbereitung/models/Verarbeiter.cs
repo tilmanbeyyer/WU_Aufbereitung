@@ -3,22 +3,65 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Office.Interop;
+using Excel=Microsoft.Office.Interop.Excel;
+
 
 namespace WU_Aufbereitung.models
 {
     class Verarbeiter
     {
         private Schueler[] schuelerListe;
+        private int[,] fehlzeitenSummenListe;
 
         public Verarbeiter()
         {
             
         }
 
-        public void erstelleExport(String pfadExport)
+        public void erstelleExport(String pfadExport, String nameLehrer)
         {
             string importPfad = "";
+            Excel.Application excel = new Excel.ApplicationClass();
+            excel.Visible = true;
 
+            Excel.Workbook workbook = excel.Workbooks.Open(importPfad);
+
+            Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Worksheets["Auswertung"];
+            try
+            {
+                for (int i = 9; i <= schuelerListe.Length; i++)
+                {
+                    //Index, Name, Vorname
+                    worksheet.Cells[i, 0] = i - 9;
+                    worksheet.Cells[i, 1] = schuelerListe[i].Nachname;
+                    worksheet.Cells[i, 2] = schuelerListe[i].Vorname;
+
+                    //Fehlzeiten
+                    for (int j = 0; j <= schuelerListe[i].Fehlzeit.Length; j++)
+                    {
+                        worksheet.Cells[i, j + 3] = schuelerListe[i].Fehlzeit[j].Stunden;
+                        worksheet.Cells[i, j + 4] = schuelerListe[i].Fehlzeit[j].Status;
+                    }
+                    //Summe
+                    worksheet.Cells[i, 2] = schuelerListe[i].Vorname;
+                    for (int j = 14; j <= 16; j++)
+                    {
+                        worksheet.Cells[i, j] = fehlzeitenSummenListe[i, j - 14];
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine("Es gab ein Problem bei der Beschreibung von Excel");
+            }
+
+            // Arbeitsmappe speichern 
+            workbook.Save();
+
+            // Excel beenden
+            excel.Quit();
         }
 
         public void erstelleAuswertung()
@@ -41,6 +84,7 @@ namespace WU_Aufbereitung.models
                         summeFehlstunden[i,3] += schuelerListe[i].Fehlzeit[j].Stunden;
                 }             
             }
+            this.fehlzeitenSummenListe = summeFehlstunden;
         }
 
         public Klasse importReport(String pfadImport)
@@ -105,6 +149,7 @@ namespace WU_Aufbereitung.models
 
         #region Getter/Setter
         public Schueler[] SchuelerListe { get => schuelerListe; set => schuelerListe = value; }
+        public int[,] FehlzeitenSummenListe { get => fehlzeitenSummenListe; set => fehlzeitenSummenListe = value; }
         #endregion
     }
 }
