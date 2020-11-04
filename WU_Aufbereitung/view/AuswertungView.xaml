@@ -7,21 +7,31 @@
         mc:Ignorable="d"
         Title="Auswertung" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="schuelerListeGrid" ItemsSource="{Binding Source = schuelerListe}" AutoGenerateColumns="False">
+        <DataGrid Name="schuelerListeGrid" ItemsSource="{Binding Source = schuelerListe}" AutoGenerateColumns="False" Margin="0,66,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" ></DataGridTextColumn>
                 <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="Mon">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="tEST"></TextBlock>
-
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="h" x:Name="moh"></DataGridTextColumn>
+                <DataGridTextColumn Header="e"></DataGridTextColumn>
+                <DataGridTextColumn Header="h"></DataGridTextColumn>
+                <DataGridTextColumn Header="e"></DataGridTextColumn>
+                <DataGridTextColumn Header="h"></DataGridTextColumn>
+                <DataGridTextColumn Header="e"></DataGridTextColumn>
+                <DataGridTextColumn Header="h"></DataGridTextColumn>
+                <DataGridTextColumn Header="e"></DataGridTextColumn>
+                <DataGridTextColumn Header="h"></DataGridTextColumn>
+                <DataGridTextColumn Header="e"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
+        <Label Name="montagLabel" Content="Mo" HorizontalAlignment="Left" Height="25" Margin="132,41,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="diensttagLabel" Content="Di" HorizontalAlignment="Left" Height="25" Margin="172,41,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="mittwochLabel" Content="Mi" HorizontalAlignment="Left" Height="25" Margin="212,41,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="donnerstagLabel" Content="Do" HorizontalAlignment="Left" Height="25" Margin="252,41,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="freitagLabel" Content="Fr" HorizontalAlignment="Left" Height="25" Margin="292,41,0,0" VerticalAlignment="Top" Width="40"/>
+
+
+
     </Grid>
-    
+
 </Window>

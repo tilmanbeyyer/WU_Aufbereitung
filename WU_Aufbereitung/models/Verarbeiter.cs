@@ -151,7 +151,7 @@ namespace WU_Aufbereitung.models
                 hilfe++;
             }
             SchuelerListe = schueler.ToArray();
-            return new Klasse(schueler, "leer");
+            return new Klasse(schueler, "leer", null);
         }
 
         public void pruefeReport()

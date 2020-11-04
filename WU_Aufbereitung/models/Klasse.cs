@@ -8,16 +8,31 @@ namespace WU_Aufbereitung.models
     {
         private List<Schueler> schuelerListe = new List<Schueler>();
         private string bezeichner;
+        private string[] woche;
 
-        public Klasse(List<Schueler> schuelerListe, string bezeichner)
+        public Klasse(List<Schueler> schuelerListe, string bezeichner, string[] woche)
         {
             this.schuelerListe = schuelerListe;
             this.bezeichner = bezeichner;
+            this.woche = woche;
         }
 
         #region Getter/Setter
         public string Bezeichner { get => bezeichner; set => bezeichner = value; }
+        public string[] Woche { get => woche; set => woche = value; }
         internal List<Schueler> SchuelerListe { get => schuelerListe; set => schuelerListe = value; }
+
+        public List<ViewSchueler> GetListViewSchueler()
+        {
+            List<ViewSchueler> list = new List<ViewSchueler>();
+            foreach (Schueler s in schuelerListe)
+            {
+                list.Add(new ViewSchueler(s, ));
+            }
+            return null;
+        }
+
+        private 
 
         public static List<Schueler> getSampleSchuelerListe() {
             List<Schueler> liste = new List<Schueler>();
@@ -28,6 +43,10 @@ namespace WU_Aufbereitung.models
             liste.Add(new Schueler("Mucke", "Philipp", new Fehlzeit[] { new Fehlzeit("04.11", 2, "entschuldigt") }));
 
             return liste;
+        }
+
+        public static string[] GetSampleDatum() { 
+            return new string[]{"01.11", "02.11", "03.11", "04.11", "05.11" };
         }
         #endregion
     }
