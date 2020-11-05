@@ -20,13 +20,20 @@ namespace WU_Aufbereitung.view
     {
         Klasse klasse;
         List<string> pfadeNachweise = new List<string>();
-        public Auswertung()
+        Verarbeiter verarbeiter = new Verarbeiter();
+        public Auswertung(string path)
         {
             InitializeComponent();
-            klasse = new Klasse(Klasse.GetSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());        
+            klasse = new Klasse(Klasse.GetSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());
+            klasse = verarbeiter.importReport(path);
+
+
+            
             this.schuelerListeGrid.ItemsSource = klasse.GetListViewSchueler();
             this.schuelerListeGrid.AllowDrop = true;
         }
+
+        internal Klasse Klasse { get => klasse; set => klasse = value; }
 
         private void dropElementOnGrid(object sender, DragEventArgs e)
         {

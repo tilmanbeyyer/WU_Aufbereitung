@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WU_Aufbereitung.models;
 using WU_Aufbereitung.view;
 
 namespace WU_Aufbereitung
@@ -23,6 +23,7 @@ namespace WU_Aufbereitung
     /// </summary>
     public partial class MainWindow : Window
     {
+        Verarbeiter verarbeiter = new Verarbeiter();
         public MainWindow()
         {
             InitializeComponent();
@@ -40,7 +41,9 @@ namespace WU_Aufbereitung
             }
             Console.WriteLine(filename);
 
-            Auswertung av = new Auswertung();
+
+
+            Auswertung av = new Auswertung(filename);
             this.Content = av.Content;
         }
 

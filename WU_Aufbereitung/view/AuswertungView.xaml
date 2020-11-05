@@ -35,7 +35,7 @@
                 <DataGridTextColumn Header="h" Binding="{Binding HFr}" Width="1*"></DataGridTextColumn>
                 <DataGridTextColumn Header="e" Binding="{Binding SFr}" Width="1*"></DataGridTextColumn>
 
-                <DataGridTextColumn Header="verspätet" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="verspätet" Width="2*" ></DataGridTextColumn>
                 <DataGridTextColumn Header="entsch" Width="2*"></DataGridTextColumn>
                 <DataGridTextColumn Header="unentsch" Width="2*"></DataGridTextColumn>
 
