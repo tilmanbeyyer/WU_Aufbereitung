@@ -201,7 +201,31 @@ namespace WU_Aufbereitung.models
 
         public void versendeMail(String adresse)
         {
+            MailMessage Email = new MailMessage();
 
+            MailAddress Sender = new MailAddress(Senderadresse);
+            Email.From = Sender;
+
+            Email.To.Add(EmpAdresse);
+            /*
+            if (anhaenge.Count != 0)
+            {
+                foreach(Attachment anhang in anhaenge)
+                {
+                    Email.Attachments.Add(anhang);
+                }
+            }*/
+
+            Email.Subject = "Test - Für dich Süßer";
+            Email.Body = "Hey ich kann Mails verschicken";
+
+            SmtpClient MailClient = new SmtpClient("smtp.office365.com");
+            MailClient.UseDefaultCredentials = false;
+            NetworkCredential nc = new NetworkCredential("hubach_ihk@outlook.de", "Passwortihk99!"); //Passwort und Namen einlesen
+            MailClient.Credentials = nc;
+            MailClient.Port = 587;
+            MailClient.EnableSsl = true;
+            MailClient.Send(Email);
         }
 
         #region Getter/Setter
