@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -9,35 +8,44 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WU_Aufbereitung.models;
-using System.Windows.Navigation;
 
 namespace WU_Aufbereitung.view
 {
+
     /// <summary>
-    /// Interaktionslogik für Auswertung.xaml
+    /// Interaktionslogik für VerarbeitungView.xaml
     /// </summary>
-    public partial class Auswertung : Window
+    public partial class VerarbeitungView : Page
     {
         Klasse klasse;
         string pfad;
         List<string> pfadeNachweise = new List<string>();
         Verarbeiter verarbeiter = new Verarbeiter();
-        public Auswertung(string path)
+        public VerarbeitungView(string path)
         {
             InitializeComponent();
+
             klasse = new Klasse(Klasse.GetSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());
             klasse = verarbeiter.importReport(path);
 
-              
-            
+
+
             this.schuelerListeGrid.ItemsSource = klasse.GetListViewSchueler();
             this.schuelerListeGrid.AllowDrop = true;
         }
 
+        internal Verarbeiter Verarbeiter { get => verarbeiter; set => verarbeiter = value; }
         internal Klasse Klasse { get => klasse; set => klasse = value; }
 
+        private void btnAuswertungExportierenClick(object sender, RoutedEventArgs e)
+        {
+            ExportEinstellungenView exportEinstellungenView = new ExportEinstellungenView();
+            exportEinstellungenView.Verarbeiter = verarbeiter;
+            this.NavigationService.Navigate(exportEinstellungenView);
+        }
         private void dropElementOnGrid(object sender, DragEventArgs e)
         {
             string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -48,22 +56,14 @@ namespace WU_Aufbereitung.view
 
             Point test = e.GetPosition(this.schuelerListeGrid);
 
-            
-            Console.WriteLine(e.Data);
-        }
 
-        private void btnAuswertungExportierenClick(object sender, RoutedEventArgs e)
-        {
-            ExportEingabeView eev = new ExportEingabeView();
-            eev.Verarbeiter = verarbeiter;
-            eev.Show();
+            Console.WriteLine(e.Data);
         }
 
         private void btnAbbrechenClick(object sender, RoutedEventArgs e)
         {
-            MainWindow mW = new MainWindow();
-            this.Content = mW.Content;
-            
+            ImportView importView = new ImportView();
+            this.NavigationService.GoBack();
         }
     }
 }

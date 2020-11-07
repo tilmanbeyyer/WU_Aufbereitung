@@ -27,8 +27,8 @@ namespace WU_Aufbereitung
         public MainWindow()
         {
             InitializeComponent();
-            StartseiteView sV = new StartseiteView();
-            this.Content = sV.Content;
+            ImportView importView = new ImportView();
+            Main.Content = importView;
         }
     }
 }

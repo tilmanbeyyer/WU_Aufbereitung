@@ -9,21 +9,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WU_Aufbereitung.models;
 
 namespace WU_Aufbereitung.view
 {
     /// <summary>
-    /// Interaktionslogik für ExportEingabeView.xaml
+    /// Interaktionslogik für ExportEinstellungenView.xaml
     /// </summary>
-    public partial class ExportEingabeView : Window
+    public partial class ExportEinstellungenView : Page
     {
         Verarbeiter verarbeiter = new Verarbeiter();
 
         internal Verarbeiter Verarbeiter { get => verarbeiter; set => verarbeiter = value; }
 
-        public ExportEingabeView()
+        public ExportEinstellungenView()
         {
             InitializeComponent();
         }
@@ -45,14 +46,14 @@ namespace WU_Aufbereitung.view
             {
                 verarbeiter.erstelleExport(@"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx", saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
             }
-            this.Close();
-            //TODO Übersicht mit Lehrer, KW und Jahr
             
+            //TODO Übersicht mit Lehrer, KW und Jahr
+
         }
 
         private void btnAbrechenClick(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.NavigationService.GoBack();
         }
     }
 }

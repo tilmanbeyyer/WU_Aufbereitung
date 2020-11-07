@@ -9,19 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WU_Aufbereitung.models;
 
 namespace WU_Aufbereitung.view
 {
     /// <summary>
-    /// Interaktionslogik für StartseiteView.xaml
+    /// Interaktionslogik für ImportView.xaml
     /// </summary>
-    public partial class StartseiteView : Window
+    public partial class ImportView : Page
     {
         Verarbeiter verarbeiter = new Verarbeiter();
-        //MainWindow mw = new MainWindow();
-        public StartseiteView()
+        public ImportView()
         {
             InitializeComponent();
         }
@@ -35,20 +35,17 @@ namespace WU_Aufbereitung.view
             if (openFileDialog.ShowDialog() == true)
             {
                 filename = openFileDialog.FileName;
+                Klasse klasse = verarbeiter.importReport(filename);
+                VerarbeitungView verarbeitungView = new VerarbeitungView(filename);
+                this.NavigationService.Navigate(verarbeitungView);
             }
             Console.WriteLine(filename);
 
-            Klasse klasse = verarbeiter.importReport(filename);
-
-
-            Auswertung av = new Auswertung(filename);
-            av.DataContext = klasse;
-            this.Content = av.Content;
+            
         }
 
         private void btnEinstellungClick(object sender, RoutedEventArgs e)
         {
-            //TODO Load File verarbeiter and Check whether file loaded successfully
             EinstellungenView eV = new EinstellungenView();
             eV.Show();
         }
