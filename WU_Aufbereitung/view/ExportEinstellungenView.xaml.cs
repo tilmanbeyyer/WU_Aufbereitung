@@ -41,7 +41,7 @@ namespace WU_Aufbereitung.view
             saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
-            saveFileDialog1.FileName = "test.xlsx";
+            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text  +"Fehlzeiten.xlsx";
             if (saveFileDialog1.ShowDialog() == true)
             {
                 verarbeiter.erstelleExport(@"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx", saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);

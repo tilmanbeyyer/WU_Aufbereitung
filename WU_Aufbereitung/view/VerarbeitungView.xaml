@@ -13,7 +13,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -22,7 +21,24 @@
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="1" Grid.Column="1" Name="schuelerListeGrid"  AutoGenerateColumns="False" Drop="dropElementOnGrid">
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12.1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Label Name="lblMontag" Content="Mo" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Name="lblDienstag" Content="Di" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Name="lblMittwoch" Content="Mi" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Name="lblDonnerstag" Content="Do" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Name="lblFreitag" Content="Fr" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+        </Grid>
+            <DataGrid Grid.Row="1" Grid.Column="1" Name="schuelerListeGrid"  AutoGenerateColumns="False" Drop="dropElementOnGrid" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nachname" Binding="{Binding Nachname}" Width="6*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Vorname" Binding="{Binding Vorname}" Width="6*"></DataGridTextColumn>
@@ -37,15 +53,15 @@
                 <DataGridTextColumn Header="h" Binding="{Binding HFr}" Width="1*"></DataGridTextColumn>
                 <DataGridTextColumn Header="e" Binding="{Binding SFr}" Width="1*"></DataGridTextColumn>
 
-                <DataGridTextColumn Header="verspätet" Width="2*" ></DataGridTextColumn>
-                <DataGridTextColumn Header="entsch" Width="2*"></DataGridTextColumn>
-                <DataGridTextColumn Header="unentsch" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="verspätet" Width="2*" Binding="{Binding Verspaetet}"></DataGridTextColumn>
+                <DataGridTextColumn Header="entsch" Width="2*" Binding="{Binding Entschuldigt}"></DataGridTextColumn>
+                <DataGridTextColumn Header="unentsch" Width="2*" Binding="{Binding Offen}"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="btnAuswertungExportieren" Grid.Row="3" Grid.Column="1" Content="Exportieren" HorizontalAlignment="Right" Click="btnAuswertungExportierenClick"  Height="auto" VerticalAlignment="Top"/>
-        <Button x:Name="btnAuswertungAbbrechen" Grid.Row="2" Grid.Column="1" Content="Abbrechen" HorizontalAlignment="Left" Click="btnAbbrechenClick"  Height="auto" VerticalAlignment="Bottom" Margin="0,0,0,15" Grid.RowSpan="2"/>
+        <Button x:Name="btnAuswertungExportieren" Grid.Row="2" Grid.Column="1" Content="Exportieren" HorizontalAlignment="Right" Click="btnAuswertungExportierenClick"  Height="auto" VerticalAlignment="Bottom" Width="73"/>
+        <Button x:Name="btnAuswertungAbbrechen" Grid.Row="2" Grid.Column="1" Content="Abbrechen" HorizontalAlignment="Left" Click="btnAbbrechenClick"  Height="auto" VerticalAlignment="Bottom"/>
 
 
 

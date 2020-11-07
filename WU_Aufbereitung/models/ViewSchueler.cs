@@ -18,6 +18,9 @@ namespace WU_Aufbereitung.models
         string sDo = "";
         int hFr = 0;
         string sFr = "";
+        int offen = 0;
+        int verspaetet = 0;
+        int entschuldigt = 0;
 
         public ViewSchueler(Schueler s)
         {
@@ -68,6 +71,10 @@ namespace WU_Aufbereitung.models
                     this.sFr = s.Fehlzeit[4].Status;
                 }
             }
+
+            this.offen = s.Offen;
+            this.entschuldigt = s.Entschuldigt;
+            this.verspaetet = s.Verspaetet;
         }
 
         public string Vorname { get => vorname; set => vorname = value; }
@@ -82,5 +89,8 @@ namespace WU_Aufbereitung.models
         public string SDo { get => sDo; set => sDo = value; }
         public int HFr { get => hFr; set => hFr = value; }
         public string SFr { get => sFr; set => sFr = value; }
+        public int Offen { get => offen; set => offen = value; }
+        public int Verspaetet { get => verspaetet; set => verspaetet = value; }
+        public int Entschuldigt { get => entschuldigt; set => entschuldigt = value; }
     }
 }

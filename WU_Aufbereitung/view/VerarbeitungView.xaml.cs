@@ -32,7 +32,11 @@ namespace WU_Aufbereitung.view
             klasse = verarbeiter.importReport(path);
 
 
-
+            this.lblMontag.Content += klasse.Woche[0];
+            this.lblDienstag.Content += klasse.Woche[1];
+            this.lblMittwoch.Content += klasse.Woche[2];
+            this.lblDonnerstag.Content += klasse.Woche[3];
+            this.lblFreitag.Content += klasse.Woche[4];
             this.schuelerListeGrid.ItemsSource = klasse.GetListViewSchueler();
             this.schuelerListeGrid.AllowDrop = true;
         }
