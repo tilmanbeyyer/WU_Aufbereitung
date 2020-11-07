@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -10,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WU_Aufbereitung.models;
+using System.Windows.Navigation;
 
 namespace WU_Aufbereitung.view
 {
@@ -19,6 +21,7 @@ namespace WU_Aufbereitung.view
     public partial class Auswertung : Window
     {
         Klasse klasse;
+        string pfad;
         List<string> pfadeNachweise = new List<string>();
         Verarbeiter verarbeiter = new Verarbeiter();
         public Auswertung(string path)
@@ -27,7 +30,7 @@ namespace WU_Aufbereitung.view
             klasse = new Klasse(Klasse.GetSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());
             klasse = verarbeiter.importReport(path);
 
-
+              
             
             this.schuelerListeGrid.ItemsSource = klasse.GetListViewSchueler();
             this.schuelerListeGrid.AllowDrop = true;
@@ -47,6 +50,20 @@ namespace WU_Aufbereitung.view
 
             
             Console.WriteLine(e.Data);
+        }
+
+        private void btnAuswertungExportierenClick(object sender, RoutedEventArgs e)
+        {
+            ExportEingabeView eev = new ExportEingabeView();
+            eev.Verarbeiter = verarbeiter;
+            eev.Show();
+        }
+
+        private void btnAbbrechenClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow mW = new MainWindow();
+            this.Content = mW.Content;
+            
         }
     }
 }

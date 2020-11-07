@@ -23,37 +23,12 @@ namespace WU_Aufbereitung
     /// </summary>
     public partial class MainWindow : Window
     {
-        Verarbeiter verarbeiter = new Verarbeiter();
+        
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void btnDateiAuswaehlenClick(object sender, RoutedEventArgs e)
-        {
-            string filename = "";
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".csv"; // Default file extension
-            openFileDialog.Filter = "CSV documents (.csv)|*.csv"; // Filter files by extension
-            if (openFileDialog.ShowDialog() == true)
-            {
-                filename = openFileDialog.FileName;
-            }
-            Console.WriteLine(filename);
-
-
-
-            Auswertung av = new Auswertung(filename);
-            this.Content = av.Content;
-        }
-
-        private void btnEinstellungClick(object sender, RoutedEventArgs e)
-        {
-            //TODO Load File verarbeiter and Check whether file loaded successfully
-            EinstellungenView eV = new EinstellungenView();
-            eV.Show();
-            
-
+            StartseiteView sV = new StartseiteView();
+            this.Content = sV.Content;
         }
     }
 }

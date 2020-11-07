@@ -1,0 +1,47 @@
+﻿<Window x:Class="WU_Aufbereitung.view.ExportEingabeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WU_Aufbereitung.view"
+        mc:Ignorable="d"
+        Title="ExportEingabeView" Height="350" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height=".1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Exportieren" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="right" Width="73" Click="btnExportierenClick"/>
+        <Button x:Name="btnAbbrechen" Content="Abbrechen" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="73" Click="btnAbrechenClick" />
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="txtLehrkraft" Grid.Column="1" HorizontalAlignment="Center" Text="Herr Muster" TextWrapping="Wrap" VerticalAlignment="Center" Width="500"/>
+            <Label x:Name="lblLehrkraft" Content="Lehrkraft:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" Width="77"/>
+
+            <TextBox x:Name="txtJahr" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Text="2020" TextWrapping="Wrap" VerticalAlignment="Center" Width="500"/>
+            <Label x:Name="lblJahr" Content="Jahr:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Width="77"/>
+
+            <TextBox x:Name="txtKW" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Text="33" TextWrapping="Wrap" VerticalAlignment="Center" Width="500"/>
+            <Label x:Name="lblKW" Content="Kalenderwoche:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="167"/>
+
+        </Grid>
+    </Grid>
+</Window>

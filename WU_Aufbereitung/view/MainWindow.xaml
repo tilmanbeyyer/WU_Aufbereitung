@@ -6,21 +6,5 @@
         xmlns:local="clr-namespace:WU_Aufbereitung"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".1*"/>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height=".1*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.1*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="0.1*"/>
-        </Grid.ColumnDefinitions>
-        <Button x:Name="btnDateiAuswaehlen" Content="Datei auswählen" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="256" Height="53" FontWeight="Bold" FontSize="16" Click="btnDateiAuswaehlenClick"/>
-        <Button x:Name="btnEinstellungen" Content="Einstellungen" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Center" Height="43" Width="80" Click="btnEinstellungClick"/>
-
-    </Grid>
+    <Grid></Grid>
 </Window>

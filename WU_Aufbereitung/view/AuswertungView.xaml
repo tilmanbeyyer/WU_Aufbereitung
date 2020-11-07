@@ -42,7 +42,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Grid.Row="3" Grid.Column="1" Content="Exportieren" HorizontalAlignment="Right"/>
+        <Button x:Name="btnAuswertungExportieren" Grid.Row="3" Grid.Column="1" Content="Exportieren" HorizontalAlignment="Right" Click="btnAuswertungExportierenClick"  Height="auto" VerticalAlignment="Top"/>
+        <Button x:Name="btnAuswertungAbbrechen" Grid.Row="2" Grid.Column="1" Content="Abbrechen" HorizontalAlignment="Left" Click="btnAbbrechenClick"  Height="auto" VerticalAlignment="Bottom" Margin="0,0,0,15" Grid.RowSpan="2"/>
 
 
 
