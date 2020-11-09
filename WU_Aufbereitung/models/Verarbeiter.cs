@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using IronXL;
@@ -134,6 +136,24 @@ namespace WU_Aufbereitung.models
                     {
                         if (Regex.IsMatch(values[i + 2], @"^\d+$"))
                         {
+                            switch (values[i + 3])
+                            {
+                                case "entsch.":
+                                    values[i + 3] = "e";
+                                    break;
+                                case "verspätet":
+
+                                    break;
+                                case "mit Attest":
+                                    values[i + 3] = "eA";
+                                    break;
+                                case "beurlaubt":
+                                    values[i + 3] = "b";
+                                    break;
+                                case "offen":
+                                    values[i + 3] = "f";
+                                    break;
+                            }
                             fehlzeiteSchueler[tag] = new Fehlzeit(tage[tag], Int32.Parse(values[i + 2]), values[i + 3]);
                         }
                         tag++;
@@ -199,7 +219,7 @@ namespace WU_Aufbereitung.models
             return false;
         }
 
-        public void versendeMail(String adresse)
+        public void versendeMail(String Senderadresse, String EmpAdresse, List<Attachment> anhang)
         {
             MailMessage Email = new MailMessage();
 
