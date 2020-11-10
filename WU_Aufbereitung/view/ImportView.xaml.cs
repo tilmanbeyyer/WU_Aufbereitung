@@ -37,6 +37,7 @@ namespace WU_Aufbereitung.view
                 filename = openFileDialog.FileName;
                 Klasse klasse = verarbeiter.importReport(filename);
                 VerarbeitungView verarbeitungView = new VerarbeitungView(filename);
+                bool result = verarbeiter.pruefeReport(filename);
                 this.NavigationService.Navigate(verarbeitungView);
             }
             Console.WriteLine(filename);

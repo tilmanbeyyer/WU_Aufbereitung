@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WU_Aufbereitung.models
 {
-    class ViewSchueler
+    public class ViewSchueler
     {
         string vorname = "";
         string nachname ="";

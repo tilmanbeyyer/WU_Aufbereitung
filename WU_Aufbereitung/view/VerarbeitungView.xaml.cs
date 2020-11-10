@@ -30,6 +30,7 @@ namespace WU_Aufbereitung.view
 
             klasse = new Klasse(Klasse.GetSampleSchuelerListe(), "FS183", Klasse.GetSampleDatum());
             klasse = verarbeiter.importReport(path);
+            
 
 
             this.lblMontag.Content += klasse.Woche[0];

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WU_Aufbereitung.models
 {
-    class Schueler
+    public class Schueler
     {
         private string nachname;
         private string vorname;

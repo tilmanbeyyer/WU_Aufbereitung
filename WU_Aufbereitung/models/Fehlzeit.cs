@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WU_Aufbereitung.models
 {
-    class Fehlzeit
+    public class Fehlzeit
     {
         private string date;
         private int stunden;

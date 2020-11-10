@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WU_Aufbereitung.models
 {
-    class Klasse
+    public class Klasse
     {
         private List<Schueler> schuelerListe = new List<Schueler>();
         private string bezeichner;

@@ -10,7 +10,7 @@ using Range = IronXL.Range;
 
 namespace WU_Aufbereitung.models
 {
-    class Verarbeiter
+    public class Verarbeiter
     {
         private Schueler[] schuelerListe;
         private int[,] fehlzeitenSummenListe;
@@ -192,7 +192,7 @@ namespace WU_Aufbereitung.models
                 }
             }
             String[] pruefeLaenge = listA.ToArray();
-            if (pruefeLaenge.Length == 5)
+            if (pruefeLaenge.Length == 52)
             {
                 return true;
             }
