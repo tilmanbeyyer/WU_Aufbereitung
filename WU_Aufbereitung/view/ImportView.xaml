@@ -22,7 +22,7 @@
             <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="btnDateiAuswaehlen" Content="Datei auswählen" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="256" Height="53" FontWeight="Bold" FontSize="16" Click="btnDateiAuswaehlenClick"/>
-        <Button x:Name="btnEinstellungen" Content="Einstellungen" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="43" Width="80" Click="btnEinstellungClick" Margin="704,0,0,4" Grid.RowSpan="3"/>
+        <Button Visibility="Hidden" x:Name="btnEinstellungen" Content="Einstellungen" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="43" Width="80" Click="btnEinstellungClick" Margin="704,0,0,4" Grid.RowSpan="3"/>
 
     </Grid>
 </Page>

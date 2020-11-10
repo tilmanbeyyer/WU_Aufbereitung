@@ -220,48 +220,56 @@ namespace WU_Aufbereitung.models
 
         public bool versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang,string password, string mail)
         {
-            MailMessage Email = new MailMessage();
-
-            MailAddress Sender = new MailAddress(Senderadresse);
-            Email.From = Sender;
-            List<Attachment> anhaenge = new List<Attachment>();
-            Email.To.Add(EmpAdresse);
-            foreach (string a in anhang)
-            {
-                anhaenge.Add(new Attachment(a));
-            }
-            
-            if (anhaenge.Count != 0)
-            {
-                foreach(Attachment a in anhaenge)
-                {
-                    Email.Attachments.Add(a);
-                }
-            }
-
-            Email.Subject = "Fehlzeitenliste";
-
-            //Klären ich brauch Klasse und KW
-            Email.Body = "Sehr geehrtes Seketeriät," +
-                "anbei schicke ich Ihnen die Fehlzeitenliste und die Nachweise der Schüler" +
-                "Mit freundlichen Grüßen,";
-
-            SmtpClient MailClient = new SmtpClient("smtp.office365.com");
-            MailClient.UseDefaultCredentials = false;
-            NetworkCredential nc = new NetworkCredential(mail, password); //Passwort und Namen einlesen
-            MailClient.Credentials = nc;
-            MailClient.Port = 587;
-            MailClient.EnableSsl = true;
             try
             {
-                MailClient.Send(Email);
+                MailMessage Email = new MailMessage();
+                MailAddress Sender = new MailAddress(Senderadresse);
+                Email.From = Sender;
+                List<Attachment> anhaenge = new List<Attachment>();
+                Email.To.Add(EmpAdresse);
+                foreach (string a in anhang)
+                {
+                    anhaenge.Add(new Attachment(a));
+                }
+
+                if (anhaenge.Count != 0)
+                {
+                    foreach (Attachment a in anhaenge)
+                    {
+                        Email.Attachments.Add(a);
+                    }
+                }
+
+                Email.Subject = "Fehlzeitenliste";
+
+                //Klären ich brauch Klasse und KW
+                Email.Body = "Sehr geehrtes Seketeriät," +
+                    "anbei schicke ich Ihnen die Fehlzeitenliste und die Nachweise der Schüler" +
+                    "Mit freundlichen Grüßen,";
+
+                SmtpClient MailClient = new SmtpClient("smtp.office365.com");
+                MailClient.UseDefaultCredentials = false;
+                NetworkCredential nc = new NetworkCredential(mail, password); //Passwort und Namen einlesen
+                MailClient.Credentials = nc;
+                MailClient.Port = 587;
+                MailClient.EnableSsl = true;
+                try
+                {
+                    MailClient.Send(Email);
 
 
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
+
                 return false;
             }
+            
             return true;
         }
 

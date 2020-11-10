@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,7 +37,20 @@ namespace WU_Aufbereitung.view
 
         private void btnSendenClick(object sender, RoutedEventArgs e)
         {
-
+            this.lblFehler.Visibility = Visibility.Hidden;
+            
+            
+            if (!Verarbeiter.versendeMail(this.txtLogin.Text, this.txtEmail.Text, this.Pfade.ToList<String>(), this.txtPassword.Password.ToString(), ""))
+            {
+                this.lblFehler.Content = "Leider ist beim Versenden der E-Mail ein Fehler aufgetreten. Bitte prüfen Sie Ihre Eingabedaten und verscuhen Sie es erneut.";
+                this.lblFehler.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.lblFehler.Content = "E-Mail erfolgreich versandt!";
+                this.lblFehler.Visibility = Visibility.Hidden;
+            }
+            
         }
     }
 }
