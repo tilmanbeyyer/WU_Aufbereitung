@@ -202,13 +202,13 @@ namespace WU_Aufbereitung.models
             List<string> listA = new List<string>();
             var line = reader.ReadLine();
             var values = line.Split(';');
-                for (int i = 0; i < values.Length; i++)
+               for (int i = 0; i < values.Length; i++)
                 {
                     if (values[i] != "")
                     {
                         listA.Add(values[i]);
                     }
-                }
+               }
             
             String[] pruefeLaenge = listA.ToArray();
             if (pruefeLaenge.Length == 5)
@@ -218,7 +218,7 @@ namespace WU_Aufbereitung.models
             return false;
         }
 
-        public void versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang,string password, string mail)
+        public bool versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang,string password, string mail)
         {
             MailMessage Email = new MailMessage();
 
@@ -243,7 +243,7 @@ namespace WU_Aufbereitung.models
 
             //Klären ich brauch Klasse und KW
             Email.Body = "Sehr geehrtes Seketeriät," +
-                "anbei schicke ich Ihnen die Fehlzeitenliste" +
+                "anbei schicke ich Ihnen die Fehlzeitenliste und die Nachweise der Schüler" +
                 "Mit freundlichen Grüßen,";
 
             SmtpClient MailClient = new SmtpClient("smtp.office365.com");
@@ -252,7 +252,17 @@ namespace WU_Aufbereitung.models
             MailClient.Credentials = nc;
             MailClient.Port = 587;
             MailClient.EnableSsl = true;
-            MailClient.Send(Email);
+            try
+            {
+                MailClient.Send(Email);
+
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
 
         #region Getter/Setter
