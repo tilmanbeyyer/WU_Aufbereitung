@@ -21,8 +21,10 @@ namespace WU_Aufbereitung.view
     public partial class ExportEinstellungenView : Page
     {
         Verarbeiter verarbeiter = new Verarbeiter();
+        string[] pfade = new string[0];
 
         internal Verarbeiter Verarbeiter { get => verarbeiter; set => verarbeiter = value; }
+        public string[] Pfade { get => pfade; set => pfade = value; }
 
         public ExportEinstellungenView()
         {
@@ -36,11 +38,11 @@ namespace WU_Aufbereitung.view
             //saveFileDialog1.InitialDirectory = @"C:\";      
             saveFileDialog1.Title = "Save text Files";
             saveFileDialog1.CheckFileExists = true;
-            saveFileDialog1.CheckPathExists = true;
+            //saveFileDialog1.CheckPathExists = true;
             saveFileDialog1.DefaultExt = "txt";
             saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
+            //saveFileDialog1.FilterIndex = 2;
+            //saveFileDialog1.RestoreDirectory = true;
             saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text  +"Fehlzeiten.xlsx";
             if (saveFileDialog1.ShowDialog() == true)
             {
@@ -54,6 +56,28 @@ namespace WU_Aufbereitung.view
         private void btnAbrechenClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();
+        }
+
+        private void btnEmailClick(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Title = "Save text Files";
+            saveFileDialog1.CheckFileExists = true;
+            saveFileDialog1.DefaultExt = "txt";
+            saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            //saveFileDialog1.FilterIndex = 2;
+            //saveFileDialog1.RestoreDirectory = true;
+            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text + "Fehlzeiten.xlsx";
+            if (saveFileDialog1.ShowDialog() == true)
+            {
+                verarbeiter.erstelleExport(@"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx", saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
+                EmailSendenView emailSendenView = new EmailSendenView();
+                emailSendenView.Pfade = pfade;
+                emailSendenView.Verarbeiter = verarbeiter;
+                this.NavigationService.Navigate(emailSendenView);
+            }
+            
+            //this.NavigationService
         }
     }
 }

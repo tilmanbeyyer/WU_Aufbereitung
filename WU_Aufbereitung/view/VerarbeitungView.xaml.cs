@@ -49,7 +49,9 @@ namespace WU_Aufbereitung.view
         {
             ExportEinstellungenView exportEinstellungenView = new ExportEinstellungenView();
             exportEinstellungenView.Verarbeiter = verarbeiter;
+            exportEinstellungenView.Pfade = pfadeNachweise.ToArray();
             this.NavigationService.Navigate(exportEinstellungenView);
+
         }
         private void dropElementOnGrid(object sender, DragEventArgs e)
         {
