@@ -116,13 +116,14 @@ namespace WU_Aufbereitung.models
                     tage = listA.ToArray();
                     daten = listA.ToArray();
                     listA.Clear();
+                    zeileCSV++; // Zähler ist auf zwei und überspringt die Zeile
                 }
-                else if (zeileCSV == 1)
+               /* else if (zeileCSV == 1)
                 {
                     zeileCSV++;
                     listA.Clear();
                     continue;
-                }
+                }*/
                 else if (zeileCSV >= 2 && !(listA.Count == 0))
                 {
 
@@ -166,17 +167,18 @@ namespace WU_Aufbereitung.models
                     {
                         if (fehlzeiteSchueler[i] != null)
                         {
-                            if (fehlzeiteSchueler[i].Status.Equals("offen"))
+                            if (fehlzeiteSchueler[i].Status.Equals("f"))
                                 //unendschuldigt
                                 offen += fehlzeiteSchueler[i].Stunden;
                             else if (fehlzeiteSchueler[i].Status.Equals("verspätet"))
                                 //Verspätet
                                 verspaetet += fehlzeiteSchueler[i].Stunden;
                             else
-                                //Entschuldigt
+                                //entschuldigt
                                 entschuldigt += fehlzeiteSchueler[i].Stunden;
                         }
                     }
+                    
                     //Schüler init
                     Schueler a = new Schueler(zeile[0], zeile[1], fehlzeiteSchueler, offen, entschuldigt, verspaetet);
                     schueler.Add(a);
@@ -198,11 +200,8 @@ namespace WU_Aufbereitung.models
             //Reader Erste Zeile auf Length 5 
             var reader = new StreamReader(File.OpenRead(pfadImport));
             List<string> listA = new List<string>();
-            while (!reader.EndOfStream)
-            {
-                var line = reader.ReadLine();
-                var values = line.Split(';');
-
+            var line = reader.ReadLine();
+            var values = line.Split(';');
                 for (int i = 0; i < values.Length; i++)
                 {
                     if (values[i] != "")
@@ -210,7 +209,7 @@ namespace WU_Aufbereitung.models
                         listA.Add(values[i]);
                     }
                 }
-            }
+            
             String[] pruefeLaenge = listA.ToArray();
             if (pruefeLaenge.Length == 5)
             {
@@ -219,29 +218,37 @@ namespace WU_Aufbereitung.models
             return false;
         }
 
-        public void versendeMail(String Senderadresse, String EmpAdresse, List<Attachment> anhang)
+        public void versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang,string password, string mail)
         {
             MailMessage Email = new MailMessage();
 
             MailAddress Sender = new MailAddress(Senderadresse);
             Email.From = Sender;
-
+            List<Attachment> anhaenge = new List<Attachment>();
             Email.To.Add(EmpAdresse);
-            /*
+            foreach (string a in anhang)
+            {
+                anhaenge.Add(new Attachment(a));
+            }
+            
             if (anhaenge.Count != 0)
             {
-                foreach(Attachment anhang in anhaenge)
+                foreach(Attachment a in anhaenge)
                 {
-                    Email.Attachments.Add(anhang);
+                    Email.Attachments.Add(a);
                 }
-            }*/
+            }
 
-            Email.Subject = "Test - Für dich Süßer";
-            Email.Body = "Hey ich kann Mails verschicken";
+            Email.Subject = "Fehlzeitenliste";
+
+            //Klären ich brauch Klasse und KW
+            Email.Body = "Sehr geehrtes Seketeriät," +
+                "anbei schicke ich Ihnen die Fehlzeitenliste" +
+                "Mit freundlichen Grüßen,";
 
             SmtpClient MailClient = new SmtpClient("smtp.office365.com");
             MailClient.UseDefaultCredentials = false;
-            NetworkCredential nc = new NetworkCredential("hubach_ihk@outlook.de", "Passwortihk99!"); //Passwort und Namen einlesen
+            NetworkCredential nc = new NetworkCredential(mail, password); //Passwort und Namen einlesen
             MailClient.Credentials = nc;
             MailClient.Port = 587;
             MailClient.EnableSsl = true;
