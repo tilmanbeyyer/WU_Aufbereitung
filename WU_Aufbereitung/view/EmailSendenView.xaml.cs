@@ -29,12 +29,12 @@ namespace WU_Aufbereitung.view
         public string[] Pfade { get => pfade; set => pfade = value; }
         public Verarbeiter Verarbeiter { get => verarbeiter; set => verarbeiter = value; }
 
-        private void btnAbrechenClick(object sender, RoutedEventArgs e)
+        private void btnZurueckClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();
         }
 
-        private void btnExportierenClick(object sender, RoutedEventArgs e)
+        private void btnSendenClick(object sender, RoutedEventArgs e)
         {
 
         }

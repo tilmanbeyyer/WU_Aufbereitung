@@ -21,8 +21,8 @@
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Senden" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="right" Width="73" Click="btnExportierenClick"/>
-        <Button x:Name="btnAbbrechen" Content="Zurück" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="73" Click="btnAbrechenClick" />
+        <Button Content="Senden" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="right" Width="73" Click="btnSendenClick"/>
+        <Button x:Name="btnAbbrechen" Content="Zurück" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="73" Click="btnZurueckClick" />
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
