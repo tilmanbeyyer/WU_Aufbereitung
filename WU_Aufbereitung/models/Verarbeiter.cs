@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using IronXL;
@@ -114,13 +116,14 @@ namespace WU_Aufbereitung.models
                     tage = listA.ToArray();
                     daten = listA.ToArray();
                     listA.Clear();
+                    zeileCSV++; // Zähler ist auf zwei und überspringt die Zeile
                 }
-                else if (zeileCSV == 1)
+               /* else if (zeileCSV == 1)
                 {
                     zeileCSV++;
                     listA.Clear();
                     continue;
-                }
+                }*/
                 else if (zeileCSV >= 2 && !(listA.Count == 0))
                 {
 
@@ -134,6 +137,24 @@ namespace WU_Aufbereitung.models
                     {
                         if (Regex.IsMatch(values[i + 2], @"^\d+$"))
                         {
+                            switch (values[i + 3])
+                            {
+                                case "entsch.":
+                                    values[i + 3] = "e";
+                                    break;
+                                case "verspätet":
+
+                                    break;
+                                case "mit Attest":
+                                    values[i + 3] = "eA";
+                                    break;
+                                case "beurlaubt":
+                                    values[i + 3] = "b";
+                                    break;
+                                case "offen":
+                                    values[i + 3] = "f";
+                                    break;
+                            }
                             fehlzeiteSchueler[tag] = new Fehlzeit(tage[tag], Int32.Parse(values[i + 2]), values[i + 3]);
                         }
                         tag++;
@@ -146,17 +167,18 @@ namespace WU_Aufbereitung.models
                     {
                         if (fehlzeiteSchueler[i] != null)
                         {
-                            if (fehlzeiteSchueler[i].Status.Equals("offen"))
+                            if (fehlzeiteSchueler[i].Status.Equals("f"))
                                 //unendschuldigt
                                 offen += fehlzeiteSchueler[i].Stunden;
                             else if (fehlzeiteSchueler[i].Status.Equals("verspätet"))
                                 //Verspätet
                                 verspaetet += fehlzeiteSchueler[i].Stunden;
                             else
-                                //Entschuldigt
+                                //entschuldigt
                                 entschuldigt += fehlzeiteSchueler[i].Stunden;
                         }
                     }
+                    
                     //Schüler init
                     Schueler a = new Schueler(zeile[0], zeile[1], fehlzeiteSchueler, offen, entschuldigt, verspaetet);
                     schueler.Add(a);
@@ -178,19 +200,16 @@ namespace WU_Aufbereitung.models
             //Reader Erste Zeile auf Length 5 
             var reader = new StreamReader(File.OpenRead(pfadImport));
             List<string> listA = new List<string>();
-            while (!reader.EndOfStream)
-            {
-                var line = reader.ReadLine();
-                var values = line.Split(';');
-
-                for (int i = 0; i < values.Length; i++)
+            var line = reader.ReadLine();
+            var values = line.Split(';');
+               for (int i = 0; i < values.Length; i++)
                 {
                     if (values[i] != "")
                     {
                         listA.Add(values[i]);
                     }
-                }
-            }
+               }
+            
             String[] pruefeLaenge = listA.ToArray();
             if (pruefeLaenge.Length == 52)
             {
@@ -199,9 +218,51 @@ namespace WU_Aufbereitung.models
             return false;
         }
 
-        public void versendeMail(String adresse)
+        public bool versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang,string password, string mail)
         {
+            MailMessage Email = new MailMessage();
 
+            MailAddress Sender = new MailAddress(Senderadresse);
+            Email.From = Sender;
+            List<Attachment> anhaenge = new List<Attachment>();
+            Email.To.Add(EmpAdresse);
+            foreach (string a in anhang)
+            {
+                anhaenge.Add(new Attachment(a));
+            }
+            
+            if (anhaenge.Count != 0)
+            {
+                foreach(Attachment a in anhaenge)
+                {
+                    Email.Attachments.Add(a);
+                }
+            }
+
+            Email.Subject = "Fehlzeitenliste";
+
+            //Klären ich brauch Klasse und KW
+            Email.Body = "Sehr geehrtes Seketeriät," +
+                "anbei schicke ich Ihnen die Fehlzeitenliste und die Nachweise der Schüler" +
+                "Mit freundlichen Grüßen,";
+
+            SmtpClient MailClient = new SmtpClient("smtp.office365.com");
+            MailClient.UseDefaultCredentials = false;
+            NetworkCredential nc = new NetworkCredential(mail, password); //Passwort und Namen einlesen
+            MailClient.Credentials = nc;
+            MailClient.Port = 587;
+            MailClient.EnableSsl = true;
+            try
+            {
+                MailClient.Send(Email);
+
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
 
         #region Getter/Setter
