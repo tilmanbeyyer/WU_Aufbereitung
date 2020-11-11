@@ -36,14 +36,14 @@ namespace WU_Aufbereitung.view
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             //saveFileDialog1.InitialDirectory = @"C:\";      
-            saveFileDialog1.Title = "Save text Files";
-            saveFileDialog1.CheckFileExists = true;
+            //saveFileDialog1.Title = "Save text Files";
+            //saveFileDialog1.CheckFileExists = true;
             //saveFileDialog1.CheckPathExists = true;
-            saveFileDialog1.DefaultExt = "txt";
-            saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.DefaultExt = "xlsx";
+            saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             //saveFileDialog1.FilterIndex = 2;
             //saveFileDialog1.RestoreDirectory = true;
-            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text  +"Fehlzeiten.xlsx";
+            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text  +"Fehlzeiten";
             if (saveFileDialog1.ShowDialog() == true)
             {
                 //@"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx
@@ -62,13 +62,9 @@ namespace WU_Aufbereitung.view
         private void btnEmailClick(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Title = "Save text Files";
-            saveFileDialog1.CheckFileExists = true;
-            saveFileDialog1.DefaultExt = "txt";
-            saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-            //saveFileDialog1.FilterIndex = 2;
-            //saveFileDialog1.RestoreDirectory = true;
-            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text + "Fehlzeiten.xlsx";
+            saveFileDialog1.DefaultExt = "xlsx";
+            saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text + "Fehlzeiten";
             if (saveFileDialog1.ShowDialog() == true)
             {
                 verarbeiter.erstelleExport(@"C:\Users\hubi\Documents\testExcel.xlsx", saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);

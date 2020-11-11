@@ -35,10 +35,19 @@ namespace WU_Aufbereitung.view
             if (openFileDialog.ShowDialog() == true)
             {
                 filename = openFileDialog.FileName;
-                Klasse klasse = verarbeiter.importReport(filename);
-                VerarbeitungView verarbeitungView = new VerarbeitungView(filename);
-                bool result = verarbeiter.pruefeReport(filename);
-                this.NavigationService.Navigate(verarbeitungView);
+                
+
+                if (verarbeiter.pruefeReport(filename))
+                {
+                    
+                    VerarbeitungView verarbeitungView = new VerarbeitungView(filename);
+                    this.NavigationService.Navigate(verarbeitungView);
+                }
+                else
+                {
+                    MessageBox.Show("Bitte wählen Sie ein Fehlzeitenreport aus WebUntis über 5 Tage aus!");
+                }
+                
             }
             Console.WriteLine(filename);
 
