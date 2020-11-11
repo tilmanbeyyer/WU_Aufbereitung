@@ -40,7 +40,7 @@ namespace WU_Aufbereitung.view
             this.lblFehler.Visibility = Visibility.Hidden;
             
             
-            if (!Verarbeiter.versendeMail(this.txtLogin.Text, this.txtEmail.Text, this.Pfade.ToList<String>(), this.txtPassword.Password.ToString(), ""))
+            if (!Verarbeiter.versendeMail(this.txtLogin.Text.ToString(), this.txtEmail.Text.ToString(), this.Pfade.ToList<String>(), this.txtPassword.Password.ToString(),"","",""))
             {
                 this.lblFehler.Content = "Leider ist beim Versenden der E-Mail ein Fehler aufgetreten. Bitte prüfen Sie Ihre Eingabedaten und versuchen Sie es erneut.";
                 this.lblFehler.Visibility = Visibility.Visible;
