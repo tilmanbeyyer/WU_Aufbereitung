@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="static\atiw-bk_300x100.png" />
+    <None Remove="static\atiw.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="static\atiw-bk_300x100.png">
+    <Content Include="static\atiw.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
