@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -78,7 +79,13 @@ namespace WU_Aufbereitung.view
                 string p = @"C:\Users\hubi\Source\Repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx";
                 verarbeiter.erstelleExport(p, saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
                 EmailSendenView emailSendenView = new EmailSendenView();
-                emailSendenView.Pfade = pfade;
+                List<string> paths = pfade.ToList<string>();
+                paths.Add(saveFileDialog1.FileName);
+
+                emailSendenView.Lehrer = this.txtLehrkraft.Text;
+                emailSendenView.Kw = this.txtKW.Text;
+                emailSendenView.Klasse = this.txtKlasse.Text;
+                emailSendenView.Pfade = paths.ToArray<string>();
                 emailSendenView.Verarbeiter = verarbeiter;
                 this.NavigationService.Navigate(emailSendenView);
             }
