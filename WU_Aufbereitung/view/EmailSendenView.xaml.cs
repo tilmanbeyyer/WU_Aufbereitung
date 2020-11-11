@@ -22,6 +22,10 @@ namespace WU_Aufbereitung.view
     {
         Verarbeiter verarbeiter = new Verarbeiter();
         string[] pfade = new string[0];
+        string lehrer = "";
+        string klasse = "";
+        private string kw = "";
+
         public EmailSendenView()
         {
             InitializeComponent();
@@ -29,6 +33,9 @@ namespace WU_Aufbereitung.view
 
         public string[] Pfade { get => pfade; set => pfade = value; }
         public Verarbeiter Verarbeiter { get => verarbeiter; set => verarbeiter = value; }
+        public string Lehrer { get => lehrer; set => lehrer = value; }
+        public string Klasse { get => klasse; set => klasse = value; }
+        public string Kw { get => kw; set => kw = value; }
 
         private void btnZurueckClick(object sender, RoutedEventArgs e)
         {
@@ -40,7 +47,7 @@ namespace WU_Aufbereitung.view
             
             
             
-            if (!Verarbeiter.versendeMail(this.txtLogin.Text.ToString(), this.txtEmail.Text.ToString(), this.Pfade.ToList<String>(), this.txtPassword.Password.ToString(),"","",""))
+            if (!Verarbeiter.versendeMail(this.txtLogin.Text.ToString(), this.txtEmail.Text.ToString(), this.Pfade.ToList<String>(), this.txtPassword.Password.ToString(), this.lehrer,this.kw,this.klasse))
             {
                 MessageBox.Show( "Leider ist beim Versenden der E-Mail ein Fehler aufgetreten. Bitte prüfen Sie Ihre Eingabedaten und versuchen Sie es erneut.");
                 
