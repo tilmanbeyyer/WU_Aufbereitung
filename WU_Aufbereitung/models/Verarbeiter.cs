@@ -116,14 +116,14 @@ namespace WU_Aufbereitung.models
                     tage = listA.ToArray();
                     daten = listA.ToArray();
                     listA.Clear();
-                    zeileCSV++; // Zähler ist auf zwei und überspringt die Zeile
+                    // Zähler ist auf zwei und überspringt die Zeile
                 }
-               /* else if (zeileCSV == 1)
+                else if (zeileCSV == 1)
                 {
                     zeileCSV++;
                     listA.Clear();
                     continue;
-                }*/
+                }
                 else if (zeileCSV >= 2 && !(listA.Count == 0))
                 {
 
@@ -220,8 +220,7 @@ namespace WU_Aufbereitung.models
 
         public bool versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang,string password, string mail)
         {
-            try
-            {
+           
                 MailMessage Email = new MailMessage();
                 MailAddress Sender = new MailAddress(Senderadresse);
                 Email.From = Sender;
@@ -263,13 +262,7 @@ namespace WU_Aufbereitung.models
                 {
                     return false;
                 }
-            }
-            catch (Exception)
-            {
 
-                return false;
-            }
-            
             return true;
         }
 
