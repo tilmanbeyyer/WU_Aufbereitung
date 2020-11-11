@@ -46,7 +46,8 @@ namespace WU_Aufbereitung.view
             saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text  +"Fehlzeiten";
             if (saveFileDialog1.ShowDialog() == true)
             {
-                verarbeiter.erstelleExport(@"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx", saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
+                //@"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx
+                verarbeiter.erstelleExport(@"C:\Users\hubi\Documents\testExcel.xlsx", saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
             }
             
             //TODO Übersicht mit Lehrer, KW und Jahr
@@ -66,7 +67,7 @@ namespace WU_Aufbereitung.view
             saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text + "Fehlzeiten";
             if (saveFileDialog1.ShowDialog() == true)
             {
-                verarbeiter.erstelleExport(@"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx", saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
+                verarbeiter.erstelleExport(@"C:\Users\hubi\Documents\testExcel.xlsx", saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
                 EmailSendenView emailSendenView = new EmailSendenView();
                 emailSendenView.Pfade = pfade;
                 emailSendenView.Verarbeiter = verarbeiter;

@@ -204,12 +204,12 @@ namespace WU_Aufbereitung.models
             var values = line.Split(';');
             for (int i = 0; i < values.Length; i++)
             {
-                if (values[i] != "")
-                {
-                    listA.Add(values[i]);
-                }
+               if (values[i] != "")
+               {
+                        listA.Add(values[i]);
+               }
             }
-
+            
             String[] pruefeLaenge = listA.ToArray();
             if (pruefeLaenge.Length == 5)
             {
@@ -218,9 +218,9 @@ namespace WU_Aufbereitung.models
             return false;
         }
 
-        public bool versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang,string password, string mail)
+        public bool versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang, string password, string lehrer, string kw, string klasse)
         {
-            
+           
                 MailMessage Email = new MailMessage();
                 MailAddress Sender = new MailAddress(Senderadresse);
                 Email.From = Sender;
@@ -239,16 +239,18 @@ namespace WU_Aufbereitung.models
                     }
                 }
 
-                Email.Subject = "Fehlzeitenliste";
+
+                Email.Subject = "Fehlzeitenliste - " + klasse + " KW " + kw;
 
                 //Klären ich brauch Klasse und KW
-                Email.Body = "Sehr geehrtes Seketeriät," +
-                    "anbei schicke ich Ihnen die Fehlzeitenliste und die Nachweise der Schüler" +
-                    "Mit freundlichen Grüßen,";
+                Email.Body = "Sehr geehrtes Seketeriät,\n" +
+                "anbei schicke ich Ihnen die Fehlzeitenliste von der Klasse: " + klasse + " mit deren Nachweise aus der KW: " + kw + "\n" +
+                "Mit freundlichen Grüßen,\n " +
+                lehrer;
 
-                SmtpClient MailClient = new SmtpClient("smtp.office365.com");
+            SmtpClient MailClient = new SmtpClient("smtp.office365.com");
                 MailClient.UseDefaultCredentials = false;
-                NetworkCredential nc = new NetworkCredential(mail, password); //Passwort und Namen einlesen
+                NetworkCredential nc = new NetworkCredential(Senderadresse, password); //Passwort und Namen einlesen
                 MailClient.Credentials = nc;
                 MailClient.Port = 587;
                 MailClient.EnableSsl = true;
@@ -258,12 +260,10 @@ namespace WU_Aufbereitung.models
                 }
                 catch (Exception e)
                 {
-                Console.WriteLine(e);
+                    Console.WriteLine(e);
                     return false;
                 }
-           
-   
-            
+
             return true;
         }
 
