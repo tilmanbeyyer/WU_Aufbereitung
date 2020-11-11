@@ -244,7 +244,7 @@ namespace WU_Aufbereitung.models
 
                 //Klären ich brauch Klasse und KW
                 Email.Body = "Sehr geehrtes Seketeriät,\n" +
-                "anbei schicke ich Ihnen die Fehlzeitenliste von der Klasse: " + klasse + " mit deren Nachweise aus der KW: " + kw + "\n" +
+                "anbei schicke ich Ihnen die Fehlzeitenliste von der Klasse: " + klasse + " mit deren Nachweisen der Kalenderwoche: " + kw + "\n" +
                 "Mit freundlichen Grüßen,\n " +
                 lehrer;
 
