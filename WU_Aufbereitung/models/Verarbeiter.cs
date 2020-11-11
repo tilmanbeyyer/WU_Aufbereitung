@@ -220,7 +220,8 @@ namespace WU_Aufbereitung.models
 
         public bool versendeMail(string Senderadresse, string EmpAdresse, List<string> anhang, string password, string lehrer, string kw, string klasse)
         {
-           
+            try
+            {
                 MailMessage Email = new MailMessage();
                 MailAddress Sender = new MailAddress(Senderadresse);
                 Email.From = Sender;
@@ -243,12 +244,12 @@ namespace WU_Aufbereitung.models
                 Email.Subject = "Fehlzeitenliste - " + klasse + " KW " + kw;
 
                 //Klären ich brauch Klasse und KW
-                Email.Body = "Sehr geehrtes Seketeriät,\n" +
+                Email.Body = "Sehr geehrtes Sekretariat,\n" +
                 "anbei schicke ich Ihnen die Fehlzeitenliste von der Klasse: " + klasse + " mit deren Nachweisen der Kalenderwoche: " + kw + "\n" +
                 "Mit freundlichen Grüßen,\n " +
                 lehrer;
 
-            SmtpClient MailClient = new SmtpClient("smtp.office365.com");
+                SmtpClient MailClient = new SmtpClient("smtp.office365.com");
                 MailClient.UseDefaultCredentials = false;
                 NetworkCredential nc = new NetworkCredential(Senderadresse, password); //Passwort und Namen einlesen
                 MailClient.Credentials = nc;
@@ -264,7 +265,13 @@ namespace WU_Aufbereitung.models
                     return false;
                 }
 
-            return true;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         #region Getter/Setter

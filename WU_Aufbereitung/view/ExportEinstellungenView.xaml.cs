@@ -50,9 +50,10 @@ namespace WU_Aufbereitung.view
             {
 
                 
-                string p = @"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx";
+                //string p = @"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx";
+                string p = @"C:\Users\hubi\Source\Repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx";
 
-               
+
                 verarbeiter.erstelleExport(p, saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
             }
             
@@ -73,7 +74,8 @@ namespace WU_Aufbereitung.view
             saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text + "Fehlzeiten";
             if (saveFileDialog1.ShowDialog() == true)
             {
-                string p = @"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx";
+                //string p = @"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx";
+                string p = @"C:\Users\hubi\Source\Repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx";
                 verarbeiter.erstelleExport(p, saveFileDialog1.FileName, this.txtJahr.Text, this.txtLehrkraft.Text);
                 EmailSendenView emailSendenView = new EmailSendenView();
                 emailSendenView.Pfade = pfade;
