@@ -255,8 +255,6 @@ namespace WU_Aufbereitung.models
                 try
                 {
                     MailClient.Send(Email);
-
-
                 }
                 catch (Exception e)
                 {
