@@ -202,16 +202,16 @@ namespace WU_Aufbereitung.models
             List<string> listA = new List<string>();
             var line = reader.ReadLine();
             var values = line.Split(';');
-               for (int i = 0; i < values.Length; i++)
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (values[i] != "")
                 {
-                    if (values[i] != "")
-                    {
-                        listA.Add(values[i]);
-                    }
-               }
-            
+                    listA.Add(values[i]);
+                }
+            }
+
             String[] pruefeLaenge = listA.ToArray();
-            if (pruefeLaenge.Length == 52)
+            if (pruefeLaenge.Length == 5)
             {
                 return true;
             }
