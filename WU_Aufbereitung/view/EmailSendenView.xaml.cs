@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -44,9 +45,12 @@ namespace WU_Aufbereitung.view
 
         private void btnSendenClick(object sender, RoutedEventArgs e)
         {
-            
-            
-            
+
+            //if (!Regex.IsMatch(@"^[a-z0-9|ä|ü|ö|\-|\.|_]+@[a-z0-9|ä|ü|ö|\-|\.|_]+\.[a-z]{2,4}$", this.txtEmail.Text))
+            //{
+            //    MessageBox.Show("Bitte geben Sie eine gültige E-Mail ein!");
+            //}
+
             if (!Verarbeiter.versendeMail(this.txtLogin.Text.ToString(), this.txtEmail.Text.ToString(), this.Pfade.ToList<String>(), this.txtPassword.Password.ToString(), this.lehrer,this.kw,this.klasse))
             {
                 MessageBox.Show( "Leider ist beim Versenden der E-Mail ein Fehler aufgetreten. Bitte prüfen Sie Ihre Eingabedaten und versuchen Sie es erneut.");

@@ -35,10 +35,10 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="txtEmail" Grid.Column="1" HorizontalAlignment="Center" Text="Sekreteriat@atiw.de" TextWrapping="Wrap" VerticalAlignment="Center" Width="500"/>
+            <TextBox x:Name="txtEmail" Grid.Column="1" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="500"/>
             <Label x:Name="lblEMail" Content="Ziel E-Mail-Adresse:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" Width="auto"/>
 
-            <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Text="LehrerLoginEmail" TextWrapping="Wrap" VerticalAlignment="Center" Width="500"/>
+            <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="500"/>
             <Label x:Name="lblLogin" Content="Login E-Mail-Adresse:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Width="auto"/>
 
             <PasswordBox x:Name="txtPassword" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500"/>
