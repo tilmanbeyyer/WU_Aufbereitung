@@ -240,7 +240,7 @@ namespace WU_Aufbereitung.models
                     }
                 }
 
-
+                
                 Email.Subject = "Fehlzeitenliste - " + klasse + " KW " + kw;
 
                 //Klären ich brauch Klasse und KW

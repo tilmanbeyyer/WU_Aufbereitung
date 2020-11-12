@@ -46,7 +46,7 @@ namespace WU_Aufbereitung.view
             saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             //saveFileDialog1.FilterIndex = 2;
             //saveFileDialog1.RestoreDirectory = true;
-            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text  +"Fehlzeiten";
+            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text + "_" + "Fehlzeiten";
             if (saveFileDialog1.ShowDialog() == true)
             {
 
@@ -72,7 +72,7 @@ namespace WU_Aufbereitung.view
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.DefaultExt = "xlsx";
             saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text + "Fehlzeiten";
+            saveFileDialog1.FileName = "KW" + this.txtKW.Text + "_" + this.txtKlasse.Text + "_" + "Fehlzeiten";
             if (saveFileDialog1.ShowDialog() == true)
             {
                 //string p = @"C:\Users\tilmanbeyer\source\repos\WU_Aufbereitung\WU_Aufbereitung\static\testExcel.xlsx";

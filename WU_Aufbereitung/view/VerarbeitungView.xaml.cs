@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -55,16 +56,21 @@ namespace WU_Aufbereitung.view
         }
         private void dropElementOnGrid(object sender, DragEventArgs e)
         {
-            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            foreach (string file in fileList)
+            try
             {
-                pfadeNachweise.Add(file);
+                string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+                foreach (string file in fileList)
+                {
+                    pfadeNachweise.Add(file);
+                }
+                MessageBox.Show("Datei " + System.IO.Path.GetFileName(fileList[0]) + "wurde angehangen.");
             }
+            catch (Exception)
+            {
 
-            Point test = e.GetPosition(this.schuelerListeGrid);
-
-
-            Console.WriteLine(e.Data);
+                MessageBox.Show("Datei konnte nicht angehangen werden.");
+            }
+            
         }
 
         private void btnAbbrechenClick(object sender, RoutedEventArgs e)
